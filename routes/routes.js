@@ -1,5 +1,4 @@
 //dependencies
-const { response } = require('express');
 const fs = require('fs');
 const path = require('path');
 
@@ -35,8 +34,12 @@ module.exports = app => {
             notes.push(newNote);
 
             fs.writeFile('./develop/db/db.json',JSON.stringify(notes));
-            //res.json(notes);
+            res.json(notes);
         });
-    })
+        //unique id
+        app.get('/api/notes/:id', function(req,res) {
+            res.json(notes[req.params.id]);
+        });
+    });
 
 };
