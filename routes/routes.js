@@ -7,10 +7,10 @@ const path = require('path');
 module.exports = app => {
 // html routes
     app.get('/notes', function(req, res) {
-        res.sendFile(path.join(__dirname, './develop/public/notes.html'));
+        res.sendFile(path.join(__dirname, '../develop/public/notes.html'));
     });
     app.get('*', function(req,res) {
-        res.sendFile(path.join(__dirname, './develop/public/index.html'));
+        res.sendFile(path.join(__dirname, '../develop/public/index.html'));
     });
 
 //api get&post route
