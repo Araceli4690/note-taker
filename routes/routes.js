@@ -6,14 +6,14 @@ const path = require('path');
 module.exports = app => {
 // html routes
     app.get('/notes', function(req, res) {
-        res.sendFile(path.join(__dirname, '../develop/public/notes.html'));
+        res.sendFile(path.join(__dirname, '../public/notes.html'));
     });
     app.get('*', function(req,res) {
-        res.sendFile(path.join(__dirname, '../develop/public/index.html'));
+        res.sendFile(path.join(__dirname, '../public/index.html'));
     });
 
 //api get&post route
-    fs.readFile('./develop/db/db.json','utf8', (err, data) => {
+    fs.readFile('./db/db.json','utf8', (err, data) => {
         if (err) {
             return console.log(err);
         };
@@ -33,7 +33,7 @@ module.exports = app => {
 
             notes.push(newNote);
 
-            fs.writeFile('./develop/db/db.json',JSON.stringify(notes));
+            fs.writeFile('./db/db.json',JSON.stringify(notes));
             res.json(notes);
         });
         //unique id
