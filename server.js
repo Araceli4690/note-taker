@@ -12,9 +12,8 @@ app.listen(port, () => {
 });
 
 //setting express for data parsing 
-app.use(express.static(__dirname));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(express.static("public"));
 
-//routes
 require('./routes/routes')(app);

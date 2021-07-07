@@ -34,16 +34,26 @@ module.exports = app => {
         app.post('/api/notes', (req, res) => {
             
             let newNote = req.body;
-
+            //unique id created
             newNote.id = uuidv4();
-
             notes.push(newNote);
 
-            fs.writeFile('./db/db.json',JSON.stringify(notes));
+            //uodating db
+            newNotes();
             
-            //console.log('New Note Created:' + JSON.stringify(newNote));
+            console.log('New Note Created:' + JSON.stringify(newNote));
         });
-      
+       
+        //function to update db
+        function newNotes() {
+            fs.writeFile("./db/db.json",JSON.stringify(notes),err => {
+                if (err) {
+                    return console.log(err);
+                }
+            });
+        };
+
+        //delete func?
     });
 
 };
