@@ -2,7 +2,12 @@
 const fs = require('fs');
 const path = require('path');
 
-//
+
+//creating uuid
+import { v4 as uuidv4} from 'uuid';
+uuidv4();
+
+
 module.exports = app => {
 // html routes
     app.get('/notes', function(req, res) {
@@ -31,15 +36,14 @@ module.exports = app => {
             let newNote = req.body;
             console.log('New Note Created:' + JSON.stringify(newNote));
 
+            newNote.id = uuidv4();
+            
             notes.push(newNote);
 
             fs.writeFile('./db/db.json',JSON.stringify(notes));
             res.json(notes);
         });
-        //unique id
-        app.get('/api/notes/:id', function(req,res) {
-            res.json(notes[req.params.id]);
-        });
+      
     });
 
 };
