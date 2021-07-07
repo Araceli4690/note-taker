@@ -11,9 +11,8 @@ app.listen(port, () => {
     console.log('API server now on port 3001!');
 });
 
-app.use(express.static(__dirname));
-
 //setting express for data parsing 
+app.use(express.static(__dirname));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 

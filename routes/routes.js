@@ -4,7 +4,7 @@ const path = require('path');
 
 
 //creating uuid
-import { v4 as uuidv4} from 'uuid';
+const {v4: uuidv4} = require('uuid');
 uuidv4();
 
 
@@ -25,7 +25,7 @@ module.exports = app => {
 
         let notes = JSON.parse(data);
 
-        console.log('returning notes data:' + JSON.stringify(notes));
+        //console.log('returning notes data:' + JSON.stringify(notes));
 
         app.get('/api/notes', (req, res) => {
             res.json(notes);
@@ -34,14 +34,14 @@ module.exports = app => {
         app.post('/api/notes', (req, res) => {
             
             let newNote = req.body;
-            console.log('New Note Created:' + JSON.stringify(newNote));
 
             newNote.id = uuidv4();
-            
+
             notes.push(newNote);
 
             fs.writeFile('./db/db.json',JSON.stringify(notes));
-            res.json(notes);
+            
+            //console.log('New Note Created:' + JSON.stringify(newNote));
         });
       
     });
