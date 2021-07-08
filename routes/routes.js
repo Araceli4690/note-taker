@@ -27,12 +27,12 @@ module.exports = app => {
             newNote.id = uuidv4();
             notes.push(newNote);
 
-            //uodating db
+            //updating db
             newNotes();
             
             console.log('New Note Created:' + JSON.stringify(newNote));
         });
-
+        //html routes moved after api routes
         app.get('/notes', function(req, res) {
             res.sendFile(path.join(__dirname, '../public/notes.html'));
         });
